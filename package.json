@@ -1,0 +1,36 @@
+{
+  "name": "foundation-js-api-wrapper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/foundation-api-wrapper.js",
+  "dependencies": {
+    "anymatch": "^3.1.1",
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "find-up": "^3.0.0",
+    "locate-path": "^3.0.0",
+    "p-limit": "^2.2.2",
+    "p-locate": "^3.0.0",
+    "path-is-absolute": "^1.0.1",
+    "picomatch": "^2.2.2",
+    "path-exists": "^3.0.0",
+    "require-main-filename": "^2.0.0",
+    "readdirp": "^3.2.0",
+    "require-directory": "^2.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tmmdata/foundation-js-api-wrapper.git"
+  },
+  "keywords": [],
+  "author": "Brooke Burkett",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tmmdata/foundation-js-api-wrapper/issues"
+  },
+  "homepage": "https://github.com/tmmdata/foundation-js-api-wrapper#readme"
+}
