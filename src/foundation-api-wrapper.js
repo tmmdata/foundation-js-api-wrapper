@@ -170,7 +170,7 @@ class APICall {
     let key = this.__buildKey(params)
     let url = `${this.baseURL}${this.path}`
     let data = this.__buildQuery(params, true)
-    this.parent.cache[key] = new Promise((resolve) => {
+    this.parent.cache[key] = new Promise((resolve, reject) => {
       if((!params.apikey && !params.userkey) && !params.nocheck) {
         resolve(false)
       }
@@ -245,13 +245,6 @@ class APICall {
       })
     })
     return this.parent.cache[key]
-  }
-
-  search (args) {
-    this.params.action = 'search'
-    if(args) this.params.arg = JSON.stringify(args)
-
-    return this
   }
 
   __resolveActions () {
