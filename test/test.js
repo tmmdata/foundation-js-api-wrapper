@@ -32,6 +32,8 @@ describe('api', function() {
 				} else if (response.error) {
 					throw new Error(response.error)
 				} else if (response.attributes.expired) {
+					throw new Error('password has expired')	
+				}else if (response.attributes.auth) {
 					throw new Error('2FA turned on')
 				} else if(response) {
 					assert.ok(true)
@@ -58,3 +60,5 @@ describe('api', function() {
 		})
 	})
 }) 
+
+

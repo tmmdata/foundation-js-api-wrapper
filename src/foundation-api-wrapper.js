@@ -162,7 +162,7 @@ class APICall {
     })
     return this.parent.cache[key]
   }
-
+    
   post (additional_params) {
     this.__resolveActions()
     let params = Object.assign({}, this.defaults, this.params, additional_params)
@@ -245,6 +245,47 @@ class APICall {
       })
     })
     return this.parent.cache[key]
+  }
+
+  newWindow (method, additional_params) {
+    this.__resolveActions()
+    let params = Object.assign({}, this.params, this.defaults)
+    if(method === 'post') params.post = true // this is for exports mostly
+    params.attributesonly = true
+    let key = this.__buildKey(params)
+    let url = `${this.baseURL}${this.path}?${this.__buildQuery(params, true)}`
+    if(!params.apikey && !params.nocheck) {
+      return false
+    }
+  
+    if (method === 'post') {
+      var d = new Date();
+      var winName = 'exportWindow'+d.getTime()
+      var form = document.createElement("form")
+      form.setAttribute("method", "post")
+      form.setAttribute("action", url)
+      form.setAttribute("target",winName)
+      for (var opt in additional_params) {
+        var input = document.createElement('input')
+        input.type = 'hidden'
+        input.name = opt
+        input.value = additional_params[opt]
+        form.appendChild(input)
+      }
+      document.body.appendChild(form)
+      window.open('',winName)
+      form.target = winName
+      form.submit()
+      document.body.removeChild(form)
+    } else {
+      var export_string = ''
+      for (var opt in additional_params) {
+        export_string += '&'+opt+'='+encodeURIComponent(additional_params[opt])
+      }
+      var new_win = window.open(url+export_string)
+      if (!new_win || new_win.closed || typeof new_win.closed == 'undefined') {
+      }
+    }
   }
 
   __resolveActions () {
