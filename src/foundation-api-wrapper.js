@@ -186,6 +186,12 @@ class APICall {
       .then(response => {
         this.__minusCall()
         if(response.data && typeof response.data === 'object') {
+          if (response.data.error) {
+            resolve({
+              error: true,
+              error_message: response.data.error_message
+            })
+          }
           resolve(response.data.data)
         } else {
           if(this.path === 'ErrorLog') return // if it fails, we will loop so we have to exit
