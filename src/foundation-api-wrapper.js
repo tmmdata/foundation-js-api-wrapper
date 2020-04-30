@@ -229,7 +229,7 @@ class APICall {
     let key = this.__buildKey(params)
     let url = `${this.baseURL}${this.path}?${this.__buildQuery(params, true)}`
     this.parent.cache[key] = new Promise((resolve) => {
-      if(!params.apikey && !params.nocheck) {
+      if((!params.apikey && !params.userkey) && !params.nocheck) {
         resolve(false)
       }
       axios({
