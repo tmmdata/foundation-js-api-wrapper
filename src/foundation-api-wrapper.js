@@ -222,9 +222,9 @@ class APICall {
     return this.parent.cache[key]
   }
 
-  file (formData) {
+  file (formData, additional_params) {
     this.__resolveActions()
-    let params = Object.assign({}, this.defaults, this.params)
+    let params = Object.assign({}, this.defaults, this.params, additional_params)
     params.attributesonly = true
     let key = this.__buildKey(params)
     let url = `${this.baseURL}${this.path}?${this.__buildQuery(params, true)}`
